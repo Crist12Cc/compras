@@ -1,5 +1,6 @@
 package com.compras.entities;
 
+import com.compras.dtos.CompradorDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,5 +23,9 @@ public class Comprador {
 
     @OneToMany(mappedBy = "comprador")
     private List<Compra> compra;
+
+    public CompradorDTO toDTO(){
+        return CompradorDTO.builder().id(this.id).nombre(this.nombre).build();
+    }
 
 }
