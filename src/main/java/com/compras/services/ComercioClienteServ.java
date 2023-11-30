@@ -3,8 +3,8 @@ package com.compras.services;
 import com.compras.dtos.ComercioClienteDTO;
 import com.compras.dtos.ComercioClienteDTO;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
-import java.awt.print.Pageable;
 import java.util.UUID;
 
 public interface ComercioClienteServ {
