@@ -20,13 +20,13 @@ public class ComercioClienteCont {
     private final ComercioClienteServ comercioClienteServ;
 
     @PostMapping
-    public ResponseEntity<ComercioClienteDTO> crear(@Valid @RequestBody ComercioClienteDTO comercioClienteDTO){
+    public ResponseEntity<ComercioClienteDTO> crear(@Valid @RequestBody ComercioClienteDTO comercioClienteDTO) {
         comercioClienteServ.crear(comercioClienteDTO);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ComercioClienteDTO> leerPorID(@PathVariable UUID id){
+    public ResponseEntity<ComercioClienteDTO> leerPorID(@PathVariable UUID id) {
         ComercioClienteDTO comercioClienteDTO = comercioClienteServ.leerPorID(id);
         if (comercioClienteDTO == null) {
             return ResponseEntity.notFound().build();
@@ -35,13 +35,13 @@ public class ComercioClienteCont {
     }
 
     @GetMapping
-    public ResponseEntity<Page<ComercioClienteDTO>> leer(Pageable pageable){
+    public ResponseEntity<Page<ComercioClienteDTO>> leer(Pageable pageable) {
         return ResponseEntity.ok(comercioClienteServ.leer(pageable));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<ComercioClienteDTO> actualizar(@PathVariable UUID id,
-                                                  @RequestBody ComercioClienteDTO comercioClienteDTO){
+                                                         @Valid @RequestBody ComercioClienteDTO comercioClienteDTO) {
         ComercioClienteDTO comercioCliente = comercioClienteServ.actualizar(id, comercioClienteDTO);
         if (comercioCliente == null) {
             return ResponseEntity.notFound().build();
@@ -50,11 +50,12 @@ public class ComercioClienteCont {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<ComercioClienteDTO> eliminar(@PathVariable UUID id){
+    public ResponseEntity<ComercioClienteDTO> eliminar(@PathVariable UUID id) {
         ComercioClienteDTO comercioCliente = comercioClienteServ.eliminar(id);
         if (comercioCliente == null) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok().build();
     }
+
 }

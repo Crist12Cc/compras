@@ -24,7 +24,7 @@ public class Comprador {
     @OneToMany(mappedBy = "comprador")
     private List<Compra> compra;
 
-    public CompradorDTO toDTO(){
+    public CompradorDTO toDTO() {
         return CompradorDTO.builder().id(this.id).nombre(this.nombre).build();
     }
 

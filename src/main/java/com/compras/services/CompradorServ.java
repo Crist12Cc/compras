@@ -14,7 +14,7 @@ public interface CompradorServ {
 
     Page<CompradorDTO> leer(Pageable pageable);
 
-    CompradorDTO actualizar(UUID id,CompradorDTO compradorDTO);
+    CompradorDTO actualizar(UUID id, CompradorDTO compradorDTO);
 
     CompradorDTO eliminar(UUID id);
 }

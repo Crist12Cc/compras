@@ -26,9 +26,8 @@ public class ComercioCliente {
     @OneToMany(mappedBy = "comercioCliente")
     private List<Compra> compra;
 
-    public ComercioClienteDTO toDTO(){
-        return ComercioClienteDTO.builder().id(this.id).nombre(this.nombre).
-                ubicacion(this.ubicacion).build();
+    public ComercioClienteDTO toDTO() {
+        return ComercioClienteDTO.builder().id(this.id).nombre(this.nombre).ubicacion(this.ubicacion).build();
     }
 
 }

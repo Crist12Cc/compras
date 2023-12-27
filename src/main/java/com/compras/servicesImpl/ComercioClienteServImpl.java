@@ -3,7 +3,6 @@ package com.compras.servicesImpl;
 import com.compras.dtos.ComercioClienteDTO;
 import com.compras.entities.ComercioCliente;
 import com.compras.repositories.ComercioClienteRepo;
-import com.compras.repositories.CompradorRepo;
 import com.compras.services.ComercioClienteServ;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -18,7 +17,6 @@ public class ComercioClienteServImpl implements ComercioClienteServ {
 
     private final ComercioClienteRepo comercioClienteRepo;
 
-
     @Override
     public ComercioClienteDTO crear(ComercioClienteDTO comercioClienteDTO) {
         return comercioClienteRepo.save(comercioClienteDTO.toEntity()).toDTO();
@@ -27,10 +25,10 @@ public class ComercioClienteServImpl implements ComercioClienteServ {
     @Override
     public ComercioClienteDTO leerPorID(UUID id) {
         ComercioCliente comercioCliente = comercioClienteRepo.findById(id).orElse(null);
-        if (comercioCliente != null) {
-            return comercioCliente.toDTO();
-        } else {
+        if (comercioCliente == null) {
             return null;
+        } else {
+            return comercioCliente.toDTO();
         }
     }
 
@@ -43,7 +41,7 @@ public class ComercioClienteServImpl implements ComercioClienteServ {
     public ComercioClienteDTO actualizar(UUID id, ComercioClienteDTO comercioClienteDTO) {
         ComercioClienteDTO comercioCliente = leerPorID(id);
         if (comercioCliente == null) {
-            return comercioCliente;
+            return null;
         }
         comercioClienteDTO.setId(id);
         return comercioClienteRepo.save(comercioClienteDTO.toEntity()).toDTO();
@@ -51,11 +49,11 @@ public class ComercioClienteServImpl implements ComercioClienteServ {
 
     @Override
     public ComercioClienteDTO eliminar(UUID id) {
-        ComercioClienteDTO comercioClienteDTO = leerPorID(id);
-        if (comercioClienteDTO == null) {
-            return comercioClienteDTO;
+        ComercioClienteDTO comercioCliente = leerPorID(id);
+        if (comercioCliente == null) {
+            return null;
         }
-        comercioClienteRepo.delete(comercioClienteDTO.toEntity());
-        return comercioClienteDTO;
+        comercioClienteRepo.delete(comercioCliente.toEntity());
+        return comercioCliente;
     }
 }

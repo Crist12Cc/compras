@@ -1,7 +1,6 @@
 package com.compras.services;
 
 import com.compras.dtos.ComercioClienteDTO;
-import com.compras.dtos.ComercioClienteDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -15,7 +14,7 @@ public interface ComercioClienteServ {
 
     Page<ComercioClienteDTO> leer(Pageable pageable);
 
-    ComercioClienteDTO actualizar(UUID id,ComercioClienteDTO comercioClienteDTO);
+    ComercioClienteDTO actualizar(UUID id, ComercioClienteDTO comercioClienteDTO);
 
     ComercioClienteDTO eliminar(UUID id);
 }
