@@ -43,7 +43,7 @@ public class CompradorServImpl implements CompradorServ {
         if (comprador == null) {
             return null;
         }
-        comprador.setId(id);
+        compradorDTO.setId(id);
         return compradorRepo.save(compradorDTO.toEntity()).toDTO();
     }
 

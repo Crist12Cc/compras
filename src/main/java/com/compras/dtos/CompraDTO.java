@@ -1,7 +1,9 @@
 package com.compras.dtos;
 
+import com.compras.enums.MedioPago;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Getter
@@ -13,11 +15,14 @@ public class CompraDTO {
 
     private UUID id;
 
-    private String nombre;
+    private LocalDate fecha;
 
-    private String ubicacion;
+    private MedioPago medioPago;
 
-    private UUID idComercioCliente;
+    private Double montoTotal;
 
-    private UUID idComprador;
+    private ComercioClienteDTO comercioCliente;
+
+    private CompradorDTO comprador;
+
 }
