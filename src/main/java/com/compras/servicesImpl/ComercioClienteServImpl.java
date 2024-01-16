@@ -56,4 +56,5 @@ public class ComercioClienteServImpl implements ComercioClienteServ {
         comercioClienteRepo.delete(comercioCliente.toEntity());
         return comercioCliente;
     }
+
 }

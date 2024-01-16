@@ -1,12 +1,14 @@
 package com.compras.controllers;
 
 import com.compras.dtos.CompraDTO;
+import com.compras.dtos.CompraParametrosDTO;
 import com.compras.dtos.CompraPeticionDTO;
 import com.compras.services.CompraServ;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -60,6 +62,15 @@ public class CompraCont {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/comercio-fecha")
+    public ResponseEntity<Page<CompraDTO>> buscarPorComercioYFechas(
+            @Valid @RequestBody CompraParametrosDTO compraParametrosDTO, Pageable pageable){
+        if (compraParametrosDTO.getFechaInicio().isAfter(compraParametrosDTO.getFechaFin())) {
+            return ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.ok(compraServ.buscarPorComercioYFechas(compraParametrosDTO, pageable));
     }
 
 }

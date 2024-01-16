@@ -40,8 +40,8 @@ public class CompradorCont {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CompradorDTO> actualizar(@PathVariable UUID id,
-                                                   @Valid @RequestBody CompradorDTO compradorDTO) {
+    public ResponseEntity<CompradorDTO> actualizar(
+            @PathVariable UUID id, @Valid @RequestBody CompradorDTO compradorDTO) {
         CompradorDTO comprador = compradorServ.actualizar(id, compradorDTO);
         if (comprador == null) {
             return ResponseEntity.notFound().build();

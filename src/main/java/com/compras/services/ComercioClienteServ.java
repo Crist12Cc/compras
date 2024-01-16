@@ -17,4 +17,5 @@ public interface ComercioClienteServ {
     ComercioClienteDTO actualizar(UUID id, ComercioClienteDTO comercioClienteDTO);
 
     ComercioClienteDTO eliminar(UUID id);
+
 }

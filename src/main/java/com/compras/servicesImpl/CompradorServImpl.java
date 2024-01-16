@@ -56,4 +56,5 @@ public class CompradorServImpl implements CompradorServ {
         compradorRepo.delete(comprador.toEntity());
         return comprador;
     }
+
 }

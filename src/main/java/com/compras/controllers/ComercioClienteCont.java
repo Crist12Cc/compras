@@ -40,8 +40,8 @@ public class ComercioClienteCont {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ComercioClienteDTO> actualizar(@PathVariable UUID id,
-                                                         @Valid @RequestBody ComercioClienteDTO comercioClienteDTO) {
+    public ResponseEntity<ComercioClienteDTO> actualizar(
+            @PathVariable UUID id, @Valid @RequestBody ComercioClienteDTO comercioClienteDTO) {
         ComercioClienteDTO comercioCliente = comercioClienteServ.actualizar(id, comercioClienteDTO);
         if (comercioCliente == null) {
             return ResponseEntity.notFound().build();

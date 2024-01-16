@@ -1,9 +1,6 @@
 package com.compras.servicesImpl;
 
-import com.compras.dtos.ComercioClienteDTO;
-import com.compras.dtos.CompraDTO;
-import com.compras.dtos.CompraPeticionDTO;
-import com.compras.dtos.CompradorDTO;
+import com.compras.dtos.*;
 import com.compras.entities.Compra;
 import com.compras.repositories.CompraRepo;
 import com.compras.services.ComercioClienteServ;
@@ -14,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Service
@@ -70,8 +68,8 @@ public class CompraServImpl implements CompraServ {
             return null;
         }
         compraPeticionDTO.setId(id);
-        return compraRepo.save(
-                compraPeticionDTO.toEntity(comercioClienteDTO.toEntity(), compradorDTO.toEntity())).toDTO();
+        return compraRepo.save(compraPeticionDTO.toEntity(
+                comercioClienteDTO.toEntity(), compradorDTO.toEntity())).toDTO();
     }
 
     @Override
@@ -83,4 +81,12 @@ public class CompraServImpl implements CompraServ {
         compraRepo.deleteById(id);
         return compra;
     }
+
+    @Override
+    public Page<CompraDTO> buscarPorComercioYFechas(CompraParametrosDTO compraParametrosDTO, Pageable pageable) {
+        return compraRepo.buscarPorComercioYFechas(
+                compraParametrosDTO.getComercioId(),compraParametrosDTO.getFechaInicio(),
+                compraParametrosDTO.getFechaFin(), pageable).map(Compra::toDTO);
+    }
+
 }

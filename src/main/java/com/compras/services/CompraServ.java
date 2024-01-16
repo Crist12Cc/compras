@@ -1,10 +1,12 @@
 package com.compras.services;
 
 import com.compras.dtos.CompraDTO;
+import com.compras.dtos.CompraParametrosDTO;
 import com.compras.dtos.CompraPeticionDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 public interface CompraServ {
@@ -18,4 +20,7 @@ public interface CompraServ {
     CompraDTO actualizar(UUID id, CompraPeticionDTO compraPeticionDTO);
 
     CompraDTO eliminar(UUID id);
+
+    Page<CompraDTO> buscarPorComercioYFechas(CompraParametrosDTO compraParametrosDTO, Pageable pageable);
+
 }

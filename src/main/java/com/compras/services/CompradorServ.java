@@ -17,4 +17,5 @@ public interface CompradorServ {
     CompradorDTO actualizar(UUID id, CompradorDTO compradorDTO);
 
     CompradorDTO eliminar(UUID id);
+
 }
