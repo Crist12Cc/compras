@@ -1,4 +1,4 @@
-package com.compras.servicesImpl;
+package com.compras.services_impl;
 
 import com.compras.dtos.*;
 import com.compras.entities.Compra;
@@ -11,7 +11,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.UUID;
 
 @Service
@@ -24,8 +23,7 @@ public class CompraServImpl implements CompraServ {
 
     @Override
     public CompraDTO crear(CompraPeticionDTO compraPeticionDTO) {
-        ComercioClienteDTO comercioClienteDTO = comercioClienteServ.leerPorID(
-                compraPeticionDTO.getIdComercioCliente());
+        ComercioClienteDTO comercioClienteDTO = comercioClienteServ.leerPorID(compraPeticionDTO.getIdComercioCliente());
         if (comercioClienteDTO == null) {
             return null;
         }
@@ -33,8 +31,8 @@ public class CompraServImpl implements CompraServ {
         if (compradorDTO == null) {
             return null;
         }
-        return compraRepo.save(
-                compraPeticionDTO.toEntity(comercioClienteDTO.toEntity(), compradorDTO.toEntity())).toDTO();
+        return compraRepo.save(compraPeticionDTO.toEntity(comercioClienteDTO.toEntity(),
+                compradorDTO.toEntity())).toDTO();
     }
 
     @Override
@@ -58,8 +56,7 @@ public class CompraServImpl implements CompraServ {
         if (compra == null) {
             return null;
         }
-        ComercioClienteDTO comercioClienteDTO = comercioClienteServ.leerPorID(
-                compraPeticionDTO.getIdComercioCliente());
+        ComercioClienteDTO comercioClienteDTO = comercioClienteServ.leerPorID(compraPeticionDTO.getIdComercioCliente());
         if (comercioClienteDTO == null) {
             return null;
         }
@@ -68,8 +65,8 @@ public class CompraServImpl implements CompraServ {
             return null;
         }
         compraPeticionDTO.setId(id);
-        return compraRepo.save(compraPeticionDTO.toEntity(
-                comercioClienteDTO.toEntity(), compradorDTO.toEntity())).toDTO();
+        return compraRepo.save(compraPeticionDTO.toEntity(comercioClienteDTO.toEntity(),
+                compradorDTO.toEntity())).toDTO();
     }
 
     @Override
@@ -84,9 +81,8 @@ public class CompraServImpl implements CompraServ {
 
     @Override
     public Page<CompraDTO> buscarPorComercioYFechas(CompraParametrosDTO compraParametrosDTO, Pageable pageable) {
-        return compraRepo.buscarPorComercioYFechas(
-                compraParametrosDTO.getComercioId(),compraParametrosDTO.getFechaInicio(),
-                compraParametrosDTO.getFechaFin(), pageable).map(Compra::toDTO);
+        return compraRepo.buscarPorComercioYFechas(compraParametrosDTO.getComercioId(),
+                compraParametrosDTO.getFechaInicio(), compraParametrosDTO.getFechaFin(), pageable).map(Compra::toDTO);
     }
 
 }

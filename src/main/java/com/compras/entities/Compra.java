@@ -34,8 +34,8 @@ public class Compra {
     private Comprador comprador;
 
     public CompraDTO toDTO() {
-        return CompraDTO.builder().id(this.id).fecha(this.fecha).medioPago(this.medioPago).montoTotal(this.montoTotal).
-                comercioCliente(this.comercioCliente.toDTO()).comprador(this.comprador.toDTO()).build();
+        return CompraDTO.builder().id(this.id).fecha(this.fecha).medioPago(this.medioPago).montoTotal(this.montoTotal)
+                .comercioCliente(this.comercioCliente.toDTO()).comprador(this.comprador.toDTO()).build();
     }
 
 }

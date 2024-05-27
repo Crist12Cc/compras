@@ -35,8 +35,8 @@ public class CompraPeticionDTO {
     private UUID idComprador;
 
     public Compra toEntity(ComercioCliente comercioCliente, Comprador comprador) {
-        return Compra.builder().id(this.id).fecha(this.fecha).medioPago(this.medioPago).montoTotal(this.montoTotal).
-                comercioCliente(comercioCliente).comprador(comprador).build();
+        return Compra.builder().id(this.id).fecha(this.fecha).medioPago(this.medioPago).montoTotal(this.montoTotal)
+                .comercioCliente(comercioCliente).comprador(comprador).build();
     }
 
 }

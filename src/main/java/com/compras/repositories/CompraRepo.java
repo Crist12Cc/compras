@@ -13,11 +13,11 @@ import java.util.UUID;
 public interface CompraRepo extends JpaRepository<Compra, UUID> {
 
     @Query("""
-    SELECT c FROM Compra c
-    WHERE c.comercioCliente.id = :comercioClienteId AND c.fecha BETWEEN :fechaInicio AND :fechaFin
-    """)
-    Page<Compra> buscarPorComercioYFechas(
-            @Param("comercioClienteId") UUID comercioClienteId, @Param("fechaInicio") LocalDate fechaInicio,
-            @Param("fechaFin") LocalDate fechaFin, Pageable pageable);
+            SELECT c FROM Compra c
+            WHERE c.comercioCliente.id = :comercioClienteId AND c.fecha BETWEEN :fechaInicio AND :fechaFin
+            """)
+    Page<Compra> buscarPorComercioYFechas(@Param("comercioClienteId") UUID comercioClienteId,
+                                          @Param("fechaInicio") LocalDate fechaInicio,
+                                          @Param("fechaFin") LocalDate fechaFin, Pageable pageable);
 
 }

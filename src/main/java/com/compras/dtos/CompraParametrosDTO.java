@@ -1,11 +1,10 @@
 package com.compras.dtos;
 
-import com.compras.entities.ComercioCliente;
-import com.compras.entities.Compra;
-import com.compras.entities.Comprador;
-import com.compras.enums.MedioPago;
 import jakarta.validation.constraints.NotNull;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.UUID;

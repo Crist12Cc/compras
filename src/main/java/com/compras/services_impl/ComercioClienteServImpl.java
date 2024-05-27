@@ -1,4 +1,4 @@
-package com.compras.servicesImpl;
+package com.compras.services_impl;
 
 import com.compras.dtos.ComercioClienteDTO;
 import com.compras.entities.ComercioCliente;

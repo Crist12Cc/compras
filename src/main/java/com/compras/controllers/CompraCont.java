@@ -8,7 +8,6 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -46,8 +45,8 @@ public class CompraCont {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CompraDTO> actualizar(
-            @PathVariable UUID id, @Valid @RequestBody CompraPeticionDTO compraPeticionDTO) {
+    public ResponseEntity<CompraDTO> actualizar(@PathVariable UUID id,
+                                                @Valid @RequestBody CompraPeticionDTO compraPeticionDTO) {
         CompraDTO comprador = compraServ.actualizar(id, compraPeticionDTO);
         if (comprador == null) {
             return ResponseEntity.notFound().build();
@@ -66,7 +65,7 @@ public class CompraCont {
 
     @PostMapping("/comercio-fecha")
     public ResponseEntity<Page<CompraDTO>> buscarPorComercioYFechas(
-            @Valid @RequestBody CompraParametrosDTO compraParametrosDTO, Pageable pageable){
+            @Valid @RequestBody CompraParametrosDTO compraParametrosDTO, Pageable pageable) {
         if (compraParametrosDTO.getFechaInicio().isAfter(compraParametrosDTO.getFechaFin())) {
             return ResponseEntity.badRequest().build();
         }
